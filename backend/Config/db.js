@@ -3,8 +3,10 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const connectDB = async () => {
+  const url = process.env.MONGO_URL;
+  // console.log(url);
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URL, {
+    const conn = await mongoose.connect(url, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
@@ -12,7 +14,7 @@ const connectDB = async () => {
     // console.log(`MongoDB Connected`);
   } catch (error) {
     console.log(`Error: ${error.message}`);
-    process.exist();
+    process.exit();
   }
 };
 module.exports = connectDB;

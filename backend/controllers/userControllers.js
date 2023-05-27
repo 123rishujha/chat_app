@@ -12,7 +12,7 @@ const allUsers = asyncHandler(async (req, res) => {
       }
     : {};
   const user = await User.find(keyword).find({ _id: { $ne: req.user._id } });
-  res.send(users);
+  res.send(user);
 });
 
 const registerUser = asyncHandler(async (req, res) => {
@@ -21,6 +21,7 @@ const registerUser = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Please Enter all the Fields");
   }
+  let userExists = await User.findOne({email});
   if (userExists) {
     res.status(400);
     throw new Error("User already exists");
