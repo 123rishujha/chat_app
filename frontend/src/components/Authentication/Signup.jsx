@@ -53,8 +53,9 @@ const Signup = () => {
           "Content-Type": "application/json",
         },
       };
+      console.log("base url", process.env.REACT_APP_BASE_URL);
       const { data } = await axios.post(
-        "https://ezmtvn-5000.csb.app/api/user",
+        `${process.env.REACT_APP_BASE_URL}/api/user`,
         { name, email, password, pic },
         config
       );
