@@ -15,8 +15,8 @@ import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const [show, setShow] = useState(false);
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const toast = useToast();
   const history = useHistory();
@@ -52,6 +52,8 @@ const Login = () => {
       );
 
       // console.log(JSON.stringify(data));
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      setLoading(false);
       toast({
         title: "Login Successful",
         status: "success",
@@ -59,8 +61,7 @@ const Login = () => {
         isClosable: true,
         position: "bottom",
       });
-      localStorage.setItem("userInfo", JSON.stringify(data));
-      setLoading(false);
+
       history.push("/chats");
     } catch (error) {
       toast({

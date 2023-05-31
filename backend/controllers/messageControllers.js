@@ -43,7 +43,7 @@ const sendMessage = asyncHandler( async (req,res) => {
 
 const allMessages = asyncHandler(async (req,res)=>{
     const chatId = req.params.chatId;
-    console.log("chat Id in all Messages");
+    // console.log("chat Id in all Messages");
     try{
         const message = await Message.find({chat: chatId})
         .populate("sender","name pic email")
@@ -55,6 +55,7 @@ const allMessages = asyncHandler(async (req,res)=>{
         throw new Error(error.message);
     }
 })
+
 
 module.exports = {
     sendMessage,
